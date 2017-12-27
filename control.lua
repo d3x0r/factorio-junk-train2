@@ -11,10 +11,12 @@ end
 script.on_event(defines.events.on_robot_built_entity, function(event)
 	local checkThis = false;
 	local negDir = 1;
-	if( event.item == "train-stop-scrap" ) then 
+	local stack = event.stack;
+	local item = stack.prototype.name;
+	if( item == "train-stop-scrap" ) then 
 		checkThis = true;
 		negDir = 1;
-	elseif( event.item == "rail-signal-scrap" or event.item=="rail-chain-signal-scrap" ) then 
+	elseif( item == "rail-signal-scrap" or item=="rail-chain-signal-scrap" ) then 
 		checkThis = true;
 		negDir = -1;
 	end
@@ -22,7 +24,7 @@ script.on_event(defines.events.on_robot_built_entity, function(event)
 		local near_items = railFromThing( event.created_entity, negDir );
 		local valid = false;
 		for i=1, #near_items do
-			--log( 'near item:'..near_items[i].name);
+			log( 'near item:'..near_items[i].name);
 			if near_items[i].name == "curved-scrap-rail" or near_items[i].name == "straight-scrap-rail" then
 				valid = true;
 				break;
@@ -30,7 +32,7 @@ script.on_event(defines.events.on_robot_built_entity, function(event)
 		end
 		if not valid then			
 			--game.players[event.player_index].print({"invalid-rail-type"})
-			event.robot.insert( { name = event.item, count=1 } )
+			event.robot.insert( { name = item, count=1 } )
 			event.created_entity.destroy();
 		end
 	end
@@ -38,17 +40,20 @@ end)
 
 
 script.on_event(defines.events.on_built_entity, function(event)
+	local stack = event.stack;
+	local item = stack.prototype;
 	--log( "event.created_neity:"..tostring( event.created_entity.valid ).. " name:".. 
-	--         event.item.. " other:"..event.created_entity.name
+	--         tostring(item.name).. " other:"..event.created_entity.name
 	--        .. " pos ".. event.created_entity.direction.. "   "..event.created_entity.position.x .. ",".. event.created_entity.position.y );
 	local checkThis;
 	local negDir;
-	if( event.item == "blueprint" ) then
-		if( event.item == "train-stop-scrap" ) then
+
+	if( item.name == "blueprint" ) then
+		if( item.name == "train-stop-scrap" ) then
 			checkThis = true;
 			negDir = 1;
-		elseif( event.item=="rail-signal-scrap" 
-		       or event.item=="rail-chain-signal-scrap" ) then 
+		elseif( item.name=="rail-signal-scrap" 
+		       or item.name=="rail-chain-signal-scrap" ) then 
 			checkThis = true;
 			negDir = -1;
 		end
@@ -71,11 +76,11 @@ script.on_event(defines.events.on_built_entity, function(event)
 
 		end
 	end
-	if( event.item == "train-stop-scrap" ) then
+	if( item.name == "train-stop-scrap" ) then
 		checkThis = true;
 		negDir = 1;
-	elseif( event.item=="rail-signal-scrap" 
-	       or event.item=="rail-chain-signal-scrap" ) then 
+	elseif( item.name=="rail-signal-scrap" 
+	       or item.name=="rail-chain-signal-scrap" ) then 
 		checkThis = true;
 		negDir = -1;
 	end;
@@ -89,9 +94,9 @@ script.on_event(defines.events.on_built_entity, function(event)
 			end
 		end
 		if not valid then
-			game.players[event.player_index].print({"invalid-rail-type-"..event.item})
+			game.players[event.player_index].print({"invalid-rail-type-"..item.name})
 			if event.created_entity.name ~= "ghost-entity"  then 
-				game.players[event.player_index].insert( { name = event.item, count=1 } )
+				game.players[event.player_index].insert( { name = item.name, count=1 } )
 			end
 			event.created_entity.destroy();
 		end
