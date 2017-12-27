@@ -108,6 +108,7 @@ data:extend({
         type = "locomotive",
         name = "JunkTrain",
         icon = "__JunkTrain2__/graphics/junk-train-icon.png",
+        icon_size = 32,
         flags = {"placeable-neutral", "player-creation", "placeable-off-grid", "not-on-map"},
         minable = {mining_time = 1, result = "JunkTrain"},
         mined_sound = {filename = "__core__/sound/deconstruct-medium.ogg"},
@@ -224,17 +225,29 @@ data:extend({
             -- left side
          
             -- right side
-            {
-                type = "create-smoke",
-                repeat_count = 25,
-                entity_name = "smoke-train-stop",
-                initial_height = 0,
-                -- smoke goes to the right
-                speed = {0.001, 0},
-                speed_multiplier = 0.05,
-                speed_multiplier_deviation = 1.2,
-                offset_deviation = {{0.6, -2.7}, {0.75, 2.7}}
-            },
+      {
+        type = "create-trivial-smoke",
+        repeat_count = 125,
+        smoke_name = "smoke-train-stop",
+        initial_height = 0,
+        -- smoke goes to the left
+        speed = {-0.03, 0},
+        speed_multiplier = 0.75,
+        speed_multiplier_deviation = 1.1,
+        offset_deviation = {{-0.75, -2.7}, {-0.3, 2.7}}
+      },
+      -- right side
+      {
+        type = "create-trivial-smoke",
+        repeat_count = 125,
+        smoke_name = "smoke-train-stop",
+        initial_height = 0,
+        -- smoke goes to the right
+        speed = {0.03, 0},
+        speed_multiplier = 0.75,
+        speed_multiplier_deviation = 1.1,
+        offset_deviation = {{0.3, -2.7}, {0.75, 2.7}}
+      },
             {
                 type = "play-sound",
                 sound =
@@ -266,6 +279,7 @@ data:extend({
     type = "straight-rail",
     name = "straight-scrap-rail",
     icon = "__JunkTrain2__/graphics/icons/rail.png",
+    icon_size = 32,
     flags = {"placeable-neutral", "player-creation", "building-direction-8-way"},
     minable = {mining_time = 0.2, result = "scrap-rail"},
     max_health = 10,
@@ -286,6 +300,7 @@ data:extend({
     type = "curved-rail",
     name = "curved-scrap-rail",
     icon = "__JunkTrain2__/graphics/icons/curved-rail.png",
+    icon_size = 32,
     flags = {"placeable-neutral", "player-creation", "building-direction-8-way"},
     minable = {mining_time = 0.2, result = "scrap-rail", count = 4},
     max_health = 20,
@@ -309,6 +324,7 @@ data:extend({
     type = "cargo-wagon",
     name = "ScrapTrailer",
     icon = "__JunkTrain2__/graphics/junk-wagon-icon.png",
+    icon_size = 32,
     flags = {"placeable-neutral", "player-creation", "placeable-off-grid", "not-on-map"},
     inventory_size = 8,
     minable = {mining_time = 1, result = "ScrapTrailer"},
@@ -368,6 +384,7 @@ data:extend({
     type = "train-stop",
     name = "train-stop-scrap",
     icon = "__base__/graphics/icons/train-stop.png",
+    icon_size = 32,
     flags = {"placeable-neutral", "player-creation", "filter-directions"},
     minable = {mining_time = 1, result = "train-stop-scrap"},
     max_health = 250,
@@ -773,6 +790,7 @@ data:extend({
     type = "rail-signal",
     name = "rail-signal-scrap",
     icon = "__base__/graphics/icons/rail-signal.png",
+    icon_size = 32,
     flags = {"placeable-neutral", "player-creation", "building-direction-8-way", "filter-directions", "fast-replaceable-no-build-while-moving"},
     fast_replaceable_group = "rail-signal",
     minable = {mining_time = 0.5, result = "rail-signal-scrap"},
@@ -819,116 +837,11 @@ data:extend({
     green_light = {intensity = 0.2, size = 4, color={g=1}},
     orange_light = {intensity = 0.2, size = 4, color={r=1, g=0.5}},
     red_light = {intensity = 0.2, size = 4, color={r=1}},
-    circuit_wire_connection_points =
-    {
-      {
-        shadow =
-        {
-          red = {0.609375, -0.359375},
-          green = {0.765625, -0.359375},
-        },
-        wire =
-        {
-          red = {0.5, -0.46875},
-          green = {0.65625, -0.46875},
-        }
-      },
-      {
-        shadow =
-        {
-          red = {0.8125, -0.03125},
-          green = {0.9375, 0.0625},
-        },
-        wire =
-        {
-          red = {0.65625, -0.125},
-          green = {0.75, -0.0625},
-        }
-      },
-      {
-        shadow =
-        {
-          red = {0.734375, 0.453125},
-          green = {0.734375, 0.578125},
-        },
-        wire =
-        {
-          red = {0.5625, 0.34375},
-          green = {0.5625, 0.5},
-        }
-      },
-      {
-        shadow =
-        {
-          red = {0.234375, 0.484375},
-          green = {0.109375, 0.578125},
-        },
-        wire =
-        {
-          red = {0.09375, 0.34375},
-          green = {-0.03125, 0.4375},
-        }
-      },
-      {
-        shadow =
-        {
-          red = {-0.421875, 0.484375},
-          green = {-0.578125, 0.484375},
-        },
-        wire =
-        {
-          red = {-0.5625, 0.34375},
-          green = {-0.71875, 0.34375},
-        }
-      },
-      {
-        shadow =
-        {
-          red = {-0.796875, 0.140625},
-          green = {-0.921875, 0.046875},
-        },
-        wire =
-        {
-          red = {-1, 0.0625},
-          green = {-1.125, -0.03125},
-        }
-      },
-      {
-        shadow =
-        {
-          red = {-0.578125, -0.453125},
-          green = {-0.578125, -0.578125},
-        },
-        wire =
-        {
-          red = {-0.71875, -0.53125},
-          green = {-0.71875, -0.65625},
-        }
-      },
-      {
-        shadow =
-        {
-          red = {-0.046875, -0.484375},
-          green = {0.078125, -0.578125},
-        },
-        wire =
-        {
-          red = {-0.125, -0.625},
-          green = {0, -0.71875},
-        }
-      }
-    },
-    circuit_connector_sprites =
-    {
-      get_circuit_connector_sprites({0.46875, -0.15625}, {0.46875, -0.15625}, 4),
-      get_circuit_connector_sprites({0.46875, 0.09375}, {0.46875, 0.09375}, 3),
-      get_circuit_connector_sprites({0.34375, 0.4375}, {0.34375, 0.4375}, 2),
-      get_circuit_connector_sprites({-0.03125, 0.34375}, {-0.03125, 0.34375}, 1),
-      get_circuit_connector_sprites({-0.5, 0.28125}, {-0.5, 0.28125}, 0),
-      get_circuit_connector_sprites({-0.78125, 0.0625}, {-0.78125, 0.0625}, 7),
-      get_circuit_connector_sprites({-0.4375, -0.40625}, {-0.4375, -0.40625}, 6),
-      get_circuit_connector_sprites({0.03125, -0.375}, {0.03125, -0.375}, 5),
-    },
+
+    circuit_wire_connection_points = circuit_connector_definitions["rail-signal"].points,
+    circuit_connector_sprites = circuit_connector_definitions["rail-signal"].sprites,
+    circuit_wire_max_distance = default_circuit_wire_max_distance,
+
     circuit_wire_max_distance = 9,
     default_red_output_signal = {type = "virtual", name = "signal-red"},
     default_orange_output_signal = {type = "virtual", name = "signal-yellow"},
@@ -938,6 +851,7 @@ data:extend({
     type = "rail-chain-signal",
     name = "rail-chain-signal-scrap",
     icon = "__base__/graphics/icons/rail-chain-signal.png",
+    icon_size = 32,
     flags = {"placeable-neutral", "player-creation", "building-direction-8-way", "filter-directions", "fast-replaceable-no-build-while-moving"},
     fast_replaceable_group = "rail-signal",
     minable = {mining_time = 0.5, result = "rail-chain-signal-scrap"},

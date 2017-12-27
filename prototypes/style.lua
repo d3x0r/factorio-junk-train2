@@ -17,8 +17,8 @@ data:extend(
 
 data.raw["gui-style"].default["st_top_button_frame_style"] =
 {
-type = "frame_style",
-	parent = "frame_style",
+type = "frame",
+	parent = "frame",
 	width = 33,
 	height = 33,
 	left_padding = 0,
@@ -28,8 +28,8 @@ type = "frame_style",
 }
 
 data.raw["gui-style"].default["st_top_image_button_style"] = {
-    type = "button_style",
-    parent = "button_style",
+    type = "button",
+    parent = "button",
     width = 33,
     height = 33,
     default_graphical_set = {
@@ -68,8 +68,8 @@ data.raw["gui-style"].default["st_top_image_button_style"] = {
 
 data.raw["gui-style"].default["st_label_title"] =
 {
-	type = "label_style",
-	parent = "label_style",
+	type = "label",
+	parent = "label",
 	width = 160,
 	align = "center",
 	font = "shuttle-train-font-bold",
@@ -79,8 +79,8 @@ data.raw["gui-style"].default["st_label_title"] =
 
 data.raw["gui-style"].default["st_label_simple_text"] =
 {
-	type = "label_style",
-	parent = "label_style",
+	type = "label",
+	parent = "label",
 	width = 35,
 	left_padding = 5,
 	right_padding = 5,
@@ -92,7 +92,7 @@ data.raw["gui-style"].default["st_label_simple_text"] =
 
 data.raw["gui-style"].default["st_textfield"] =
 {
-	type = "textfield_style",
+	type = "textfield",
 	left_padding = 5,
 	right_padding = 5,
 	minimal_width = 115,
@@ -113,8 +113,8 @@ data.raw["gui-style"].default["st_textfield"] =
 
 data.raw["gui-style"].default["st-station-button"] =
 {
-	type = "button_style",
-	parent = "button_style",
+	type = "button",
+	parent = "button",
 	font = "shuttle-train-font",
 	default_font_color = {r = 1, g = 1, b = 1},
 	align = "center",
@@ -168,8 +168,8 @@ data.raw["gui-style"].default["st-station-button"] =
 
 data.raw["gui-style"].default["st-nav-button-pagination"] =
 {
-	type = "button_style",
-	parent = "button_style",
+	type = "button",
+	parent = "button",
 	font = "shuttle-train-font",
 	default_font_color = {r = 1, g = 1, b = 1},
 	align = "center",
@@ -223,8 +223,8 @@ data.raw["gui-style"].default["st-nav-button-pagination"] =
 
 data.raw["gui-style"].default["st-nav-button-arrow"] =
 {
-	type = "button_style",
-	parent = "button_style",
+	type = "button",
+	parent = "button",
 	font = "shuttle-train-font",
 	default_font_color = {r = 1, g = 1, b = 1},
 	align = "center",
@@ -279,7 +279,7 @@ data.raw["gui-style"].default["st-nav-button-arrow"] =
 
 data.raw["gui-style"].default["st-nav-button-arrow-disabled"] =
 {
-	type = "button_style",
+	type = "button",
 	parent = "st-nav-button-arrow",
 	default_font_color = {r = 0.34, g = 0.34, b = 0.34},
 	hovered_font_color = {r = 0.34, g = 0.34, b = 0.38},
