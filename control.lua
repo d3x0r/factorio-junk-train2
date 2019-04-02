@@ -11,8 +11,7 @@ end
 script.on_event(defines.events.on_robot_built_entity, function(event)
 	local checkThis = false;
 	local negDir = 1;
-	local stack = event.stack;
-	local item = stack.prototype.name;
+	local item = event.created_entity.name;
 	if( item == "train-stop-scrap" ) then 
 		checkThis = true;
 		negDir = 1;
@@ -40,8 +39,7 @@ end)
 
 
 script.on_event(defines.events.on_built_entity, function(event)
-	local stack = event.stack;
-	local item = stack.prototype;
+	local item = event.created_entity.name;
 	--log( "event.created_neity:"..tostring( event.created_entity.valid ).. " name:".. 
 	--         tostring(item.name).. " other:"..event.created_entity.name
 	--        .. " pos ".. event.created_entity.direction.. "   "..event.created_entity.position.x .. ",".. event.created_entity.position.y );
